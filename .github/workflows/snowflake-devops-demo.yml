@@ -36,7 +36,7 @@ jobs:
         run: |
           cat << EOF > connections.toml
           [snowflake]
-          account = "${SF_ACCOUNT}"
+          account = "kaibxga-dlb23705"
           user = "${SF_USERNAME}"
           password =  "${SNOWFLAKE_PASSWORD}"
           role = "${SF_ROLE}"
