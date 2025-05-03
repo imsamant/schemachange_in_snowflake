@@ -54,3 +54,8 @@ jobs:
           ls -la
           echo "List of files in the GITHUB_WORKSPACE:"
           ls -la $GITHUB_WORKSPACE
+          echo "Account $SF_ACCOUNT"
+          echo "User $SF_USERNAME"
+          echo "Role $SF_ROLE"
+          echo "WAREHOUSE $SF_WAREHOUSE"
+          echo "DATABASE $SF_DATABASE"
