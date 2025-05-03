@@ -54,13 +54,3 @@ jobs:
           ls -la
           echo "List of files in the GITHUB_WORKSPACE:"
           ls -la $GITHUB_WORKSPACE
-
-      - name: Run schemachange
-        run: |
-          echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
-          python --version
-          echo "Step 1: Installing schemachange"
-          pip install schemachange
-          
-          echo "Step 2: Running schemachange"
-          schemachange -f $GITHUB_WORKSPACE/migrations --connections-file-path connections.toml --connection-name snowflake -c $SF_DATABASE.SCHEMACHANGE.CHANGE_HISTORY --create-change-history-table
