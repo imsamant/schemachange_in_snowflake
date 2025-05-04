@@ -26,27 +26,27 @@ jobs:
           python-version: 3.8.x
 
       - name: Create connections.toml
+        run: |
+          cat << EOF > connections.toml
+          [snowflake]
+          account = "${{ secrets.SF_ACCOUNT }}"
+          user = "${{ secrets.SF_USERNAME }}"
+          password =  "${{ secrets.SF_PASSWORD }}"
+          role = "${{ secrets.SF_ROLE }}"
+          warehouse = "${{ secrets.SF_WAREHOUSE }}"
+          database =  "${{ secrets.SF_DATABASE }}"
+          EOF
+          echo "connections.toml chmod step"
+          chmod 0600 connections.toml
+
+      - name: Debug workspace
         env:
           SF_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
           SF_USERNAME: ${{ secrets.SF_USERNAME }}
           SNOWFLAKE_PASSWORD: ${{ secrets.SF_PASSWORD }}
           SF_ROLE: ${{ secrets.SF_ROLE }}
           SF_WAREHOUSE: ${{ secrets.SF_WAREHOUSE }}
-          SF_DATABASE: ${{ secrets.SF_DATABASE }}
-        run: |
-          cat << EOF > connections.toml
-          [snowflake]
-          account = "ynb39381"
-          user = "${SF_USERNAME}"
-          password =  "${SNOWFLAKE_PASSWORD}"
-          role = "${SF_ROLE}"
-          warehouse = "${SF_WAREHOUSE}"
-          database =  "${SF_DATABASE}"
-          EOF
-          echo "connections.toml chmod step"
-          chmod 0600 connections.toml
-
-      - name: Debug workspace
+          SF_DATABASE: ${{ secrets.SF_DATABASE }}   
         run: |
           echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
           echo "Current directory: $(pwd)"
